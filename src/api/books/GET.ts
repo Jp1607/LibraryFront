@@ -1,4 +1,4 @@
-import type { Book } from "src/types/book";
+import { Book } from "../../types/entities/book"
 import { GET } from "../requests";
 
 export async function getBookByTitle(title: string): Promise<Book> {

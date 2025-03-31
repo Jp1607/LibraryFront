@@ -1,33 +1,31 @@
 import React from 'react';
 import { CustomTable, CustomTableBody, CustomTableCell, CustomTableContainer, CustomTableHead, CustomTableRow } from './TableComponents';
+import { TableComponentProps } from '../../types/componentsTypes/tableTypes';
 
-interface TableHeaders<T> {
-    key: keyof T,
-    label: string
-}
-
-interface TableComponentProps<T> {
-    rows: T[],
-    columns: TableHeaders<T>[],
-    onRowClick: () => {}
-}
-const LTableComponent = <T,>({ rows, columns, onRowClick }: TableComponentProps<T>) => {
+const LTable = <T,>({ rows, columns, onRowClick }: TableComponentProps<T>) => {
 
     return (
         <CustomTableContainer>
             <CustomTable>
                 <CustomTableHead>
-                    <CustomTableRow onClick={onRowClick}>
+                    <CustomTableRow>
                         {columns.map((column) => (
                             <CustomTableCell key={column.key.toString()}>{column.label}</CustomTableCell>
                         ))}
                     </CustomTableRow>
                 </CustomTableHead>
                 <CustomTableBody>
-                    {rows.map((row) => (
-                        <CustomTableRow onClick={onRowClick}>
-                            {columns.map((column) => (
-                                <CustomTableCell key={column.key.toString()}>{row[column.key] as React.ReactNode}</CustomTableCell>
+                    {rows.map((row, rowIndex) => (
+                        <CustomTableRow
+                            onClick={() => onRowClick(row)}
+                            key={`table-row-${rowIndex}`}
+                        >
+                            {columns.map((column, columnIndex) => (
+                                <CustomTableCell
+                                    key={`table-cell-row:${rowIndex}-column:${columnIndex}`}
+                                >
+                                    {row[column.key] as React.ReactNode}
+                                </CustomTableCell>
                             ))}
                         </CustomTableRow>
                     ))}
@@ -37,4 +35,4 @@ const LTableComponent = <T,>({ rows, columns, onRowClick }: TableComponentProps<
     )
 }
 
-export default LTableComponent
+export default LTable
