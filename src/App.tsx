@@ -1,10 +1,11 @@
 import './App.css'
-import BookPage from './pages/bookPage/bookList'
+import BookPage from './pages/bookPage/BookList'
+import { StudentRegister } from './pages/student/StudentRegister'
 
 function App() {
   return (
     <>
-      <BookPage />
+      <StudentRegister />
     </>
   )
 }

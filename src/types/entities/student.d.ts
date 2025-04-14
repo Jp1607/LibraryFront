@@ -1,0 +1,1 @@
+export type StudentType = { name: string, surname: string, contact: string, address?: string, class: string };
