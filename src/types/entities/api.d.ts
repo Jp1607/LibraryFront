@@ -1,0 +1,1 @@
+export type apiDataType = { id: number, [key: string]: any }

@@ -1,4 +1,4 @@
-import type { BookDTOType } from "src/types/book";
+import { BookDTOType } from "../../types/entities/book";
 import { POST } from "../requests";
 
 export async function addBook(book: BookDTOType): Promise<string> {

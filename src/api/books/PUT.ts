@@ -1,6 +1,7 @@
-import type { BookType } from "src/types/book";
+import { apiDataType } from "../../types/entities/api";
+import { BookType } from "../../types/entities/book";
 import { PUT, PUTExclude } from "../requests";
-import type { apiDataType } from "src/types/apiData";
+
 
 export async function editBook(book: BookType): Promise<string> {
   const response = await PUT("books", book).then((response) => response);
