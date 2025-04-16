@@ -16,8 +16,9 @@ export async function GET<T>(tableName: string, param?: string[]): Promise<T> {
   }
 }
 
-export async function POST<T>(tableName: string, obj: T): Promise<string> {
-  const response = await fetch(`http://localhost:8080/${tableName}`, {
+export async function POST<T>(tableName: string, obj: T, param?: string[]): Promise<string> {
+  const query = param ? `?${param.map((p) => `${p}`).join("&")}` : "";
+  const response = await fetch(`http://localhost:8080/${tableName}${query}`, {
     headers: myHeaders,
     method: "POST",
     body: JSON.stringify(obj),

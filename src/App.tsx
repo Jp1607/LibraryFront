@@ -1,5 +1,5 @@
 import './App.css'
-import BookPage from './pages/bookPage/BookList'
+import BookPage from './pages/bookPages/BookList'
 import { StudentRegister } from './pages/student/StudentRegister'
 
 function App() {

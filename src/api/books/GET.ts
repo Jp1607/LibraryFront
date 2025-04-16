@@ -8,6 +8,13 @@ export async function getBookByTitle(title: string): Promise<BookType> {
   return Book;
 }
 
+export async function getBookById(id: number): Promise<BookType> {
+  const Book: BookType = await GET<BookType>("books", [`id=${id}`]).then(
+    (response) => response
+  );
+  return Book;
+}
+
 export async function getBookList(): Promise<BookType[]> {
   const BookList: BookType[] = await GET<BookType[]>("books").then(
     (response) => response
