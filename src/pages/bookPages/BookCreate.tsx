@@ -1,10 +1,11 @@
 import React from "react";
 import { LTextField } from "../../components/inputs/text/LTextField"
 import { LBox } from "../../components/layoutComponents/LBox"
-import { BookDTOType } from "../../types/entities/book"
+import { BookDTOType, BookType } from "../../types/entities/book"
 import { getBookById } from "../../api/books/GET";
 import { LButton } from "../../components/buttons/LButton";
 import { addBook } from "../../api/books/POST";
+import { editBook } from "../../api/books/PUT";
 
 export const CreateBook = (bookId?: number) => {
     const [book, setBook] = React.useState<BookDTOType>({
@@ -31,7 +32,14 @@ export const CreateBook = (bookId?: number) => {
     }
 
     const handleSubmit = () => {
-        addBook(book)
+        if (bookId) addBook(book);
+        const Book: BookType = {
+            id: bookId as number,
+            author: book.author,
+            genre: book.genre,
+            title: book.title
+        }
+        editBook(Book);
     }
 
     return (

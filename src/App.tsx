@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
 import BookPage from './pages/bookPages/BookList'
 import { StudentRegister } from './pages/student/StudentRegister'
@@ -5,7 +6,9 @@ import { StudentRegister } from './pages/student/StudentRegister'
 function App() {
   return (
     <>
-      <StudentRegister />
+      <BrowserRouter>
+        <StudentRegister />
+      </BrowserRouter>
     </>
   )
 }
