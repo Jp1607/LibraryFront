@@ -1,16 +1,17 @@
 import { BrowserRouter } from 'react-router-dom'
+import { Router } from './routes/Routes'
 import './App.css'
-import BookPage from './pages/bookPages/BookList'
-import { StudentRegister } from './pages/student/StudentRegister'
+import { LSideBar } from './components/layoutComponents/LSideBar'
 
 function App() {
+
   return (
     <>
       <BrowserRouter>
-        <StudentRegister />
+        <LSideBar />
+        <Router />
       </BrowserRouter>
     </>
   )
 }
-
 export default App

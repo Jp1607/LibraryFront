@@ -7,3 +7,10 @@ export async function getStudentsList(): Promise<StudentType[]> {
     );
     return StudentList;
 }
+
+export async function getStudentById(id: number): Promise<StudentType> {
+    const Student: StudentType = await GET<StudentType>("students", [`id=${id}`]).then(
+        (response) => response
+    );
+    return Student;
+}

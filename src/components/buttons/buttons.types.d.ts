@@ -1,0 +1,1 @@
+export type LLinkButtonProps = { path: string, label: string };

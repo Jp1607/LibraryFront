@@ -1,16 +1,18 @@
-import { Button, styled } from "@mui/material"
+import { Button, ButtonProps, styled } from "@mui/material"
+import { LinkProps } from "react-router-dom"
 
-const StyledButton = styled(Button)(({ theme }) => ({}))
+type CustomProps = ButtonProps & Partial<LinkProps>
+const StyledButton = styled(Button)<CustomProps>(({ }) => ({}))
 type CustomButtonProps = {
     component?: React.ElementType,
     children?: React.ReactNode,
-    onClick: () => {}
+    to?: string,
+    onClick?: () => {}
 }
-export const CustomButton: React.FC<CustomButtonProps> = ({ children, component, onClick }) => {
+export const CustomButton: React.FC<CustomButtonProps> = ({ children, component, to, onClick }) => {
     return (
         <>
-            <StyledButton component={component} onClick={onClick}>{children}</StyledButton>
-            <Button component={'a'}></Button>
+            <StyledButton component={component} to={to} onClick={onClick}>{children}</StyledButton>
         </>
 
     )

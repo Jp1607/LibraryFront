@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom"
 import { CustomButton } from "./ButtonComponents"
+import { LLinkButtonProps } from "./buttons.types"
 
-const LLinkButton = () => {
+export const LLinkButton: React.FC<LLinkButtonProps> = ({ path, label }: LLinkButtonProps) => {
 
     return (
-        <CustomButton />
+        <CustomButton component={Link} to={path}>{label}</CustomButton>
     )
 }

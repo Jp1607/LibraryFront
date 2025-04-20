@@ -4,16 +4,25 @@ import { LBox } from "../../components/layoutComponents/LBox"
 import { StudentDTOType, StudentType } from "../../types/entities/student";
 import { LButton } from "../../components/buttons/LButton";
 import { addStudent } from "../../api/students/students_POST";
+import { useParams } from "react-router-dom";
+import { getStudentById } from "../../api/students/students_GET";
 
 export const StudentRegister = () => {
 
+    const { studentID } = useParams();
     const [currentStudent, setCurrentStudent] = React.useState<StudentDTOType>({ name: "", surname: "", class: "", contact: "" });
+
+    React.useEffect(() => {
+        if (studentID) {
+            getStudentById(parseInt(studentID))
+        }
+    }, [])
+
 
     const handleAttributeChange = (key: keyof StudentDTOType, value: any) => {
         const student = Object.assign({}, currentStudent);
         student[key] = value;
         setCurrentStudent(student);
-        console.log(student)
     }
 
     const handleSubmmit = async () => {

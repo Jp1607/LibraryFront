@@ -3,10 +3,11 @@ import { getBookList } from "../../api/books/GET";
 import { LButton } from "../../components/buttons/LButton";
 import LTable from "../../components/tables/LTable";
 import { TableHeaders } from "../../types/componentsTypes/tableTypes";
-import { Book } from "../../types/entities/book";
 import { LBox } from "../../components/layoutComponents/LBox";
+import { LLinkButton } from "../../components/buttons/LLinkButton";
+import { BookType } from "../../types/entities/book";
 
-const BookTableHeaders: TableHeaders<Book>[] = [
+const BookTableHeaders: TableHeaders<BookType>[] = [
     { key: 'id', label: "id" },
     { key: 'title', label: "Título" },
     { key: 'author', label: "Autor" },
@@ -14,39 +15,33 @@ const BookTableHeaders: TableHeaders<Book>[] = [
 ]
 
 const BookPage = () => {
-    const [booklist, setBookList] = React.useState<Book[]>([]);
-    const [selectedBook, setSelectedBook] = React.useState<Book>({ id: 0, author: "", genre: "", title: "" });
+    const [booklist, setBookList] = React.useState<BookType[]>([]);
+    const [selectedBook, setSelectedBook] = React.useState<BookType>({ id: 0, author: "", genre: "", title: "" });
     const [open, setOpen] = React.useState<Boolean>(false);
 
     React.useEffect(() => {
         getBookList().then((response) => { setBookList(response) });
     }, []);
 
-    const HandleRowClick = (book: Book) => {
+    const HandleRowClick = (book: BookType) => {
         setSelectedBook(book);
     }
 
-    const HandleSave = () => {
-
-    }
-    const HandleEdit = () => {
-
-    }
     const HandleDelete = () => {
 
     }
+
     const HandleBorrow = () => {
 
     }
 
     return (
         <LBox>
-
-            <LButton label="Novo" onClick={ } />
-            <LButton label="Editar" onClick={ } />
-            <LButton label="Excluir" onClick={ } />
-            <LButton label="Emprestar" onClick={ } />
-            <LTable<Book> rows={booklist} onRowClick={HandleRowClick} columns={BookTableHeaders} />
+            <LLinkButton label="Novo" path="/books/new" />
+            <LLinkButton label="Editar" path={`/books/new/:${selectedBook.id}`} />
+            <LButton label="Excluir" onClick={() => HandleDelete} />
+            <LButton label="Emprestar" onClick={() => HandleBorrow} />
+            <LTable<BookType> rows={booklist} onRowClick={HandleRowClick} columns={BookTableHeaders} />
         </LBox>
     )
 }

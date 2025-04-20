@@ -1,15 +1,12 @@
-import { LButton } from "../buttons/LButton"
+import { LLinkButton } from "../buttons/LLinkButton"
 import { LBox } from "./LBox"
 
-const LSideBar = () => {
-
-    const handleNavigation = (path: string) => {
-
-    }
+export const LSideBar = () => {
 
     return (
         <LBox>
-
+            <LLinkButton label="Livros" path="/books" />
+            <LLinkButton label="Alunos" path="/students" />
         </LBox>
     )
 }
