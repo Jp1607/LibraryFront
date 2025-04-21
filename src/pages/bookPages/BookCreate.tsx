@@ -6,8 +6,10 @@ import { getBookById } from "../../api/books/GET";
 import { LButton } from "../../components/buttons/LButton";
 import { addBook } from "../../api/books/POST";
 import { editBook } from "../../api/books/PUT";
+import { useParams } from "react-router";
 
-export const CreateBook = (bookId?: number) => {
+export const CreateBook = () => {
+    const { bookId } = useParams();
     const [book, setBook] = React.useState<BookDTOType>({
         title: "",
         author: "",

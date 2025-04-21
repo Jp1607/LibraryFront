@@ -1,1 +1,3 @@
-export type LLinkButtonProps = { path: string, label: string };
+import { ButtonProps } from "@mui/material"
+
+export type LLinkButtonProps = ButtonProps & { path: string, label: string };

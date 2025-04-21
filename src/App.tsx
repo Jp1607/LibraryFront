@@ -1,17 +1,19 @@
-import { BrowserRouter } from 'react-router-dom'
-import { Router } from './routes/Routes'
-import './App.css'
-import { LSideBar } from './components/layoutComponents/LSideBar'
+import { BrowserRouter } from 'react-router-dom';
+import Router from './routes/Routes';
+import { LSideBar } from './components/layoutComponents/LSideBar';
+import { LBox } from './components/layoutComponents/LBox';
 
-function App() {
-
+const App = () => {
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+      <LBox display={"flex"} height={"100vh"} width={"100vw"}>
         <LSideBar />
-        <Router />
-      </BrowserRouter>
-    </>
-  )
+        <LBox flexGrow={1}>
+          <Router />
+        </LBox>
+      </LBox>
+    </BrowserRouter>
+  );
 }
-export default App
+
+export default App;
