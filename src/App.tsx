@@ -8,7 +8,7 @@ const App = () => {
     <BrowserRouter>
       <LBox display={"flex"} height={"100vh"} width={"100vw"}>
         <LSideBar />
-        <LBox flexGrow={1}>
+        <LBox flexGrow={1} padding={3}>
           <Router />
         </LBox>
       </LBox>

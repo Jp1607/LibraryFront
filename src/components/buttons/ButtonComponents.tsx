@@ -7,13 +7,10 @@ type CustomButtonProps = ButtonProps & {
     component?: React.ElementType,
     children?: React.ReactNode,
     to?: string,
-    onClick?: () => {}
+    onClick?: () => void
 }
 export const CustomButton: React.FC<CustomButtonProps> = ({ children, component, to, onClick, ...rest }) => {
     return (
-        <>
-            <StyledButton component={component} to={to} onClick={onClick} {...rest}>{children}</StyledButton>
-        </>
-
+        <StyledButton component={component} to={to} onClick={onClick} {...rest}>{children}</StyledButton>
     )
 }

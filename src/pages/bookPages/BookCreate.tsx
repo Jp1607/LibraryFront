@@ -23,7 +23,7 @@ export const CreateBook = () => {
 
     React.useEffect(() => {
         if (bookId) {
-            getBook(bookId)
+            getBook(parseInt(bookId))
         }
     }, []);
 
@@ -33,15 +33,24 @@ export const CreateBook = () => {
         setBook(b);
     }
 
-    const handleSubmit = () => {
-        if (bookId) addBook(book);
-        const Book: BookType = {
-            id: bookId as number,
-            author: book.author,
-            genre: book.genre,
-            title: book.title
+    const handleSubmit = async () => {
+        console.log("1")
+        if (!bookId) {
+            console.log("2")
+            const response = await addBook(book)
+            console.log(response)
+        } else {
+            console.log("3")
+            const Book: BookType = {
+                id: parseInt(bookId),
+                author: book.author,
+                genre: book.genre,
+                title: book.title
+            }
+            const response = await editBook(Book)
+            console.log(response)
+
         }
-        editBook(Book);
     }
 
     return (
@@ -49,7 +58,7 @@ export const CreateBook = () => {
             <LTextField label="Título" value={book.title} onChange={(e) => handleParameterChange('title', e.target.value.toString())} />
             <LTextField label="Autor" value={book.author} onChange={(e) => handleParameterChange('author', e.target.value.toString())} />
             <LTextField label="Gênero" value={book.genre} onChange={(e) => handleParameterChange('genre', e.target.value.toString())} />
-            <LButton label="Salvar" onClick={handleSubmit} />
+            <LButton label="Salvar" onClick={() => handleSubmit()} />
         </LBox>
     )
 }

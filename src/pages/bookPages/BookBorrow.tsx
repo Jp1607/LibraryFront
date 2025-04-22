@@ -8,8 +8,12 @@ import { StudentType } from "../../types/entities/student";
 import { getStudentsList } from "../../api/students/students_GET";
 import { LButton } from "../../components/buttons/LButton";
 import { borrowBook } from "../../api/books/POST";
+import { useParams } from "react-router";
+import { getBookById } from "../../api/books/GET";
 
-export const BookBorrow = (book: BookType) => {
+export const BookBorrow = () => {
+    const { bookId } = useParams();
+    const [book, setBook] = React.useState<BookType>({ author: "", genre: "", title: "" })
     const [students, setStudents] = React.useState<StudentType[]>([])
     const [student, setStudent] = React.useState<StudentType>({
         name: "",
@@ -30,9 +34,15 @@ export const BookBorrow = (book: BookType) => {
         setStudents(sList);
     }
 
+    async function getBook() {
+        const b = await getBookById(parseInt(bookId as string))
+        setBook(b);
+    }
+
     React.useEffect(() => {
+        getBook()
         getStudents();
-    })
+    }, [])
 
     const HandleTableClick = (student: StudentType) => {
         setStudent(student);
@@ -42,6 +52,8 @@ export const BookBorrow = (book: BookType) => {
         const response = await borrowBook(book, student)
     }
 
+    console.log(book)
+
     return (
         <LBox>
             <LTextField readonly={true} label="Título" value={book.title} />
@@ -50,7 +62,7 @@ export const BookBorrow = (book: BookType) => {
             <LTextField readonly={true} label="Aluno" value={student.name + " " + student.surname} />
             <LTextField readonly={true} label="Turma" value={student.class} />
             <LTable columns={StudentsTableHeaders} rows={students} onRowClick={(s) => HandleTableClick(s)} />
-            <LButton label="Emprestar" onClick={HandleBorrow} />
+            <LButton label="Emprestar" onClick={() => HandleBorrow} />
         </LBox>
     )
 }

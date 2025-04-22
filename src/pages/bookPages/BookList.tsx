@@ -8,7 +8,7 @@ import { LLinkButton } from "../../components/buttons/LLinkButton";
 import { BookType } from "../../types/entities/book";
 
 const BookTableHeaders: TableHeaders<BookType>[] = [
-    { key: 'id', label: "id" },
+    { key: 'id', label: "Id" },
     { key: 'title', label: "Título" },
     { key: 'author', label: "Autor" },
     { key: 'genre', label: "Gênero" }
@@ -27,20 +27,16 @@ const BookPage = () => {
         setSelectedBook(book);
     }
 
-    const HandleDelete = () => {
+    // const HandleDelete = () => {
 
-    }
-
-    const HandleBorrow = () => {
-
-    }
+    // }
 
     return (
         <LBox>
             <LLinkButton label="Novo" path="/books/new" />
             <LLinkButton label="Editar" path={`/books/new/:${selectedBook.id}`} />
-            <LButton label="Excluir" onClick={() => HandleDelete} />
-            <LButton label="Emprestar" onClick={() => HandleBorrow} />
+            {/* <LButton label="Excluir" onClick={() => HandleDelete} /> */}
+            <LLinkButton label="Emprestar" path={`/books/borrow/:${selectedBook.id}`} />
             <LTable<BookType> rows={booklist} onRowClick={HandleRowClick} columns={BookTableHeaders} />
         </LBox>
     )

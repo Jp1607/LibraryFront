@@ -7,6 +7,6 @@ type LButtonProps = {
 
 export const LButton: React.FC<LButtonProps> = ({ label, onClick }) => {
     return (
-        <CustomButton onClick={() => onClick}>{label}</CustomButton>
+        <CustomButton onClick={onClick}>{label}</CustomButton>
     )
 }

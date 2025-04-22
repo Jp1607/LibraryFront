@@ -20,6 +20,7 @@ const StudentPage = () => {
     const [open, setOpen] = React.useState<Boolean>(false);
 
     const StudentsTableHeaders: TableHeaders<StudentType>[] = [
+        { key: 'id', label: "Id" },
         { key: "name", label: "Nome" },
         { key: "surname", label: "Sobrenome" },
         { key: "class", label: "Turma" }
