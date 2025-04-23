@@ -25,18 +25,16 @@ const BookPage = () => {
 
     const HandleRowClick = (book: BookType) => {
         setSelectedBook(book);
+        console.log(selectedBook.id)
     }
 
-    // const HandleDelete = () => {
-
-    // }
 
     return (
         <LBox>
             <LLinkButton label="Novo" path="/books/new" />
-            <LLinkButton label="Editar" path={`/books/new/:${selectedBook.id}`} />
+            <LLinkButton label="Editar" path={`/books/new/${selectedBook.id}`} />
             {/* <LButton label="Excluir" onClick={() => HandleDelete} /> */}
-            <LLinkButton label="Emprestar" path={`/books/borrow/:${selectedBook.id}`} />
+            <LLinkButton label="Emprestar" path={`/books/borrow/${selectedBook.id}`} />
             <LTable<BookType> rows={booklist} onRowClick={HandleRowClick} columns={BookTableHeaders} />
         </LBox>
     )

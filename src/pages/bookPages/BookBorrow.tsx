@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LTextField } from "../../components/inputs/text/LTextField"
 import { LBox } from "../../components/layoutComponents/LBox"
 import { BookType } from "../../types/entities/book";
@@ -8,7 +8,7 @@ import { StudentType } from "../../types/entities/student";
 import { getStudentsList } from "../../api/students/students_GET";
 import { LButton } from "../../components/buttons/LButton";
 import { borrowBook } from "../../api/books/POST";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { getBookById } from "../../api/books/GET";
 
 export const BookBorrow = () => {
@@ -34,35 +34,34 @@ export const BookBorrow = () => {
         setStudents(sList);
     }
 
-    async function getBook() {
-        const b = await getBookById(parseInt(bookId as string))
-        setBook(b);
+    const getBook = () => {
+        getBookById(parseInt(bookId as string)).then((response) => { console.log(response) }).catch(() => { })
     }
 
-    React.useEffect(() => {
-        getBook()
-        getStudents();
-    }, [])
+    useEffect(() => {
+        if (bookId) {
+            getBook()
+            getStudents();
+        }
+    }, [bookId])
 
     const HandleTableClick = (student: StudentType) => {
         setStudent(student);
     }
 
     const HandleBorrow = async () => {
-        const response = await borrowBook(book, student)
+        //     const response = await borrowBook(book, student)
     }
-
-    console.log(book)
 
     return (
         <LBox>
-            <LTextField readonly={true} label="Título" value={book.title} />
-            <LTextField readonly={true} label="Autor" value={book.author} />
-            <LTextField readonly={true} label="Gênero" value={book.genre} />
-            <LTextField readonly={true} label="Aluno" value={student.name + " " + student.surname} />
-            <LTextField readonly={true} label="Turma" value={student.class} />
+            <LTextField readonly={true} label="Título" value={book ? book.title : ''} />
+            <LTextField readonly={true} label="Autor" value={book ? book.author : ''} />
+            <LTextField readonly={true} label="Gênero" value={book ? book.genre : ''} />
+            <LTextField readonly={true} label="Aluno" value={student.name + " " + student.surname || ''} />
+            <LTextField readonly={true} label="Turma" value={student.class || ''} />
             <LTable columns={StudentsTableHeaders} rows={students} onRowClick={(s) => HandleTableClick(s)} />
-            <LButton label="Emprestar" onClick={() => HandleBorrow} />
+            <LButton label="Emprestar" onClick={() => HandleBorrow()} />
         </LBox>
     )
 }
