@@ -7,7 +7,7 @@ type CustomButtonProps = ButtonProps & {
     component?: React.ElementType,
     children?: React.ReactNode,
     to?: string,
-    onClick?: () => void
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 export const CustomButton: React.FC<CustomButtonProps> = ({ children, component, to, onClick, ...rest }) => {
     return (

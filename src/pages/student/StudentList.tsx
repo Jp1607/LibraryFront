@@ -11,10 +11,10 @@ const StudentPage = () => {
     const [studentList, setStudentList] = React.useState<StudentType[]>([]);
     const [selectedStudent, setSelectedStudent] = React.useState<StudentType>(
         {
-            id: 0,
+            id: undefined,
             name: "",
             surname: "",
-            class: "",
+            classroom: undefined,
             contact: ""
         });
     const [open, setOpen] = React.useState<Boolean>(false);
@@ -23,7 +23,7 @@ const StudentPage = () => {
         { key: 'id', label: "Id" },
         { key: "name", label: "Nome" },
         { key: "surname", label: "Sobrenome" },
-        { key: "class", label: "Turma" }
+        { key: "classroom", label: "Sala" }
     ]
 
     React.useEffect(() => {
@@ -34,19 +34,7 @@ const StudentPage = () => {
         setSelectedStudent(student);
     }
 
-    const HandleSave = () => {
-
-    }
-
-    const HandleEdit = () => {
-
-    }
-
-    const HandleDelete = () => {
-
-    }
-
-    // const HandleBorrow = () => {
+    // const HandleDelete = () => {
 
     // }
 
@@ -54,8 +42,7 @@ const StudentPage = () => {
         <LBox>
             <LLinkButton label="Novo" path="/students/new" />
             <LLinkButton label="Editar" path={`/students/new/:${selectedStudent.id}`} />
-            <LButton label="Excluir" onClick={() => HandleDelete} />
-            {/* <LButton label="Emprestar" onClick={() => HandleBorrow} /> */}
+            {/* <LButton label="Excluir" onClick={() => HandleDelete} /> */}
             <LTable<StudentType> rows={studentList} onRowClick={HandleRowClick} columns={StudentsTableHeaders} />
         </LBox>
     )

@@ -16,7 +16,7 @@ const BookTableHeaders: TableHeaders<BookType>[] = [
 
 const BookPage = () => {
     const [booklist, setBookList] = React.useState<BookType[]>([]);
-    const [selectedBook, setSelectedBook] = React.useState<BookType>({ id: 0, author: "", genre: "", title: "" });
+    const [selectedBook, setSelectedBook] = React.useState<BookType>({ id: 0, author: "", genre: "", title: "", patrionialId: "", shelf: 0 });
     const [open, setOpen] = React.useState<Boolean>(false);
 
     React.useEffect(() => {
@@ -28,11 +28,12 @@ const BookPage = () => {
         console.log(selectedBook.id)
     }
 
+    const HeadersButtonRightMargin = "5px";
 
     return (
         <LBox>
-            <LLinkButton label="Novo" path="/books/new" />
-            <LLinkButton label="Editar" path={`/books/new/${selectedBook.id}`} />
+            <LLinkButton label="Novo" path="/books/new" sx={{ marginRight: { HeadersButtonRightMargin } }} />
+            <LLinkButton label="Editar" path={`/books/new/${selectedBook.id}`} sx={{ marginRight: { HeadersButtonRightMargin } }} />
             {/* <LButton label="Excluir" onClick={() => HandleDelete} /> */}
             <LLinkButton label="Emprestar" path={`/books/borrow/${selectedBook.id}`} />
             <LTable<BookType> rows={booklist} onRowClick={HandleRowClick} columns={BookTableHeaders} />

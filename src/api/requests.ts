@@ -9,6 +9,7 @@ export async function GET<T>(tableName: string, param?: string[]): Promise<T> {
     headers: myHeaders,
     method: "GET",
   });
+
   if (!response.ok) {
     throw new Error(await response.json());
   } else {
@@ -16,7 +17,8 @@ export async function GET<T>(tableName: string, param?: string[]): Promise<T> {
   }
 }
 
-export async function POST<T>(tableName: string, obj: T, param?: string[]): Promise<string> {
+export async function POST<T>(tableName: string, obj?: T, param?: string[]): Promise<string> {
+  console.log(param)
   const query = param ? `?${param.map((p) => `${p}`).join("&")}` : "";
   const response = await fetch(`http://localhost:8080/${tableName}${query}`, {
     headers: myHeaders,

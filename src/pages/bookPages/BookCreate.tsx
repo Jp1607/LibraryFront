@@ -13,7 +13,9 @@ export const CreateBook = () => {
     const [book, setBook] = React.useState<BookDTOType>({
         title: "",
         author: "",
-        genre: ""
+        genre: "",
+        patrionialId: "",
+        shelf: ""
     });
 
     async function getBook(bookId: number) {
@@ -34,21 +36,18 @@ export const CreateBook = () => {
     }
 
     const handleSubmit = async () => {
-        console.log("1")
         if (!bookId) {
-            console.log("2")
             const response = await addBook(book)
-            console.log(response)
         } else {
-            console.log("3")
             const Book: BookType = {
                 id: parseInt(bookId),
                 author: book.author,
                 genre: book.genre,
-                title: book.title
+                title: book.title,
+                patrionialId: book.patrionialId,
+                shelf: book.shelf
             }
             const response = await editBook(Book)
-            console.log(response)
 
         }
     }

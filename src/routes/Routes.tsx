@@ -4,6 +4,7 @@ import StudentPage from '../pages/student/StudentList';
 import { StudentRegister } from '../pages/student/StudentRegister';
 import { CreateBook } from '../pages/bookPages/BookCreate';
 import { BookBorrow } from '../pages/bookPages/BookBorrow';
+import { BorrowedBookList } from '../pages/bookFlow/BorrowedBookList';
 
 const Router = () => {
     return (
@@ -16,6 +17,7 @@ const Router = () => {
             <Route path="/students" element={<StudentPage />} />
             <Route path="/students/new" element={<StudentRegister />} />
             <Route path="/students/new/:studentId" element={<StudentRegister />} />
+            <Route path='/borrowed' element={<BorrowedBookList />} />
         </Routes>
     );
 };
