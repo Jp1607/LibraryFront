@@ -50,7 +50,7 @@ export const BookBorrow = () => {
     }
 
     const HandleBorrow = async () => {
-        const response = await borrowBook(book, student)
+        await borrowBook(book, student)
     }
 
     return (

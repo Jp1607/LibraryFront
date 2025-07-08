@@ -1,4 +1,5 @@
-import type { apiDataType } from "src/types/apiData";
+import { apiDataType } from "../types/entities/api";
+
 
 const myHeaders: Headers = new Headers();
 myHeaders.append("Content-Type", "application/json");

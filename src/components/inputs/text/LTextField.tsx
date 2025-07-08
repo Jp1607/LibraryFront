@@ -4,8 +4,6 @@ import { CustomTextField } from "./TextInputComponents"
 
 export const LTextField = ({ value, label, readonly, onChange }: LTextFieldProps) => {
 
-    console.log(value)
-
     return (
         <CustomTextField
             readonly={readonly}

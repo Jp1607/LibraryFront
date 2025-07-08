@@ -8,7 +8,7 @@ import { LBox } from "../../components/layoutComponents/LBox"
 import { returnBook } from "../../api/bookFlow/bookFlow_POST"
 
 export const BorrowedBookList = () => {
-    const [bookFlowList, setBookFlowList] = React.useState<BookFlowType[]>([])
+    // const [bookFlowList, setBookFlowList] = React.useState<BookFlowType[]>([])
     const [bookFlow, setBookFlow] = React.useState<BookFlowType>(
         {
             id: undefined,

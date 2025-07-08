@@ -4,7 +4,6 @@ import { TableComponentProps } from '../../types/componentsTypes/tableTypes';
 
 const LTable = <T,>({ rows, columns, onRowClick }: TableComponentProps<T>) => {
     const [selectedRowId, setSelectedRowId] = React.useState<number>();
-
     const handleClick = (row: T, rowIndex: number) => {
         setSelectedRowId(rowIndex)
         onRowClick(row);

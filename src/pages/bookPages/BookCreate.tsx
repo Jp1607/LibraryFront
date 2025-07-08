@@ -1,7 +1,7 @@
 import React from "react";
 import { LTextField } from "../../components/inputs/text/LTextField"
 import { LBox } from "../../components/layoutComponents/LBox"
-import { BookDTOType, BookType } from "../../types/entities/book"
+import { BookType } from "../../types/entities/book"
 import { getBookById } from "../../api/books/GET";
 import { LButton } from "../../components/buttons/LButton";
 import { addBook } from "../../api/books/POST";
@@ -10,12 +10,22 @@ import { useParams } from "react-router";
 
 export const CreateBook = () => {
     const { bookId } = useParams();
-    const [book, setBook] = React.useState<BookDTOType>({
+    // const [bookDTO, setBookDTO] = React.useState<BookDTOType>({
+    //     title: "",
+    //     author: "",
+    //     genre: "",
+    //     patrionialId: "",
+    //     shelf: ""
+    // });
+    const [book, setBook] = React.useState<BookType>({
+        id: undefined,
         title: "",
         author: "",
         genre: "",
         patrionialId: "",
-        shelf: ""
+        shelf: undefined,
+        isAvailable: undefined,
+        isExcluded: undefined
     });
 
     async function getBook(bookId: number) {
@@ -29,7 +39,7 @@ export const CreateBook = () => {
         }
     }, []);
 
-    const handleParameterChange = (key: keyof BookDTOType, value: any) => {
+    const handleParameterChange = <K extends keyof BookType>(key: K, value: BookType[K]) => {
         let b = Object.assign({}, book);
         b[key] = value;
         setBook(b);
@@ -37,7 +47,7 @@ export const CreateBook = () => {
 
     const handleSubmit = async () => {
         if (!bookId) {
-            const response = await addBook(book)
+            await addBook(book)
         } else {
             const Book: BookType = {
                 id: parseInt(bookId),
@@ -47,7 +57,7 @@ export const CreateBook = () => {
                 patrionialId: book.patrionialId,
                 shelf: book.shelf
             }
-            const response = await editBook(Book)
+            await editBook(Book)
 
         }
     }

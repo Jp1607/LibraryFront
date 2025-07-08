@@ -1,6 +1,6 @@
 import React from "react";
 import { getStudentsList } from "../../api/students/students_GET";
-import { LButton } from "../../components/buttons/LButton";
+// import { LButton } from "../../components/buttons/LButton";
 import { LBox } from "../../components/layoutComponents/LBox";
 import LTable from "../../components/tables/LTable"
 import { StudentType } from "../../types/entities/student";
@@ -17,7 +17,7 @@ const StudentPage = () => {
             classroom: undefined,
             contact: ""
         });
-    const [open, setOpen] = React.useState<Boolean>(false);
+    // const [open, setOpen] = React.useState<Boolean>(false);
 
     const StudentsTableHeaders: TableHeaders<StudentType>[] = [
         { key: 'id', label: "Id" },

@@ -2,7 +2,9 @@ import { Button, ButtonProps, styled } from "@mui/material"
 import { LinkProps } from "react-router-dom"
 
 type CustomProps = ButtonProps & Partial<LinkProps>
+
 const StyledButton = styled(Button)<CustomProps>(({ }) => ({}))
+
 type CustomButtonProps = ButtonProps & {
     component?: React.ElementType,
     children?: React.ReactNode,

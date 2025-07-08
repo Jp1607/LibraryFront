@@ -1,9 +1,9 @@
 import { BookType } from "../../types/entities/book";
 import { StudentType } from "../../types/entities/student";
-import { GET, POST } from "../requests";
+import { POST } from "../requests";
 
 export async function borrowBook(book: BookType, student: StudentType) {
-    const response = await POST("flow", [`bookId=${book.id}`, `studentId=${student.id}`])
+    const response = await POST("flow", undefined, [`bookId=${book.id}`, `studentId=${student.id}`])
     return response;
 }
 
