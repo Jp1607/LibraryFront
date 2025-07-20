@@ -5,7 +5,7 @@ import { LBox } from "../../components/layoutComponents/LBox";
 import LTable from "../../components/tables/LTable"
 import { StudentType } from "../../types/entities/student";
 import { TableHeaders } from "../../types/componentsTypes/tableTypes";
-import { LLinkButton } from "../../components/buttons/LLinkButton";
+// import { LLinkButton } from "../../components/buttons/LLinkButton";
 
 const StudentPage = () => {
     const [studentList, setStudentList] = React.useState<StudentType[]>([]);
@@ -40,8 +40,8 @@ const StudentPage = () => {
 
     return (
         <LBox>
-            <LLinkButton label="Novo" path="/students/new" />
-            <LLinkButton label="Editar" path={`/students/new/:${selectedStudent.id}`} />
+            {/* <LLinkButton label="Novo" path="/students/new" />
+            <LLinkButton label="Editar" path={`/students/new/:${selectedStudent.id}`} /> */}
             {/* <LButton label="Excluir" onClick={() => HandleDelete} /> */}
             <LTable<StudentType> rows={studentList} onRowClick={HandleRowClick} columns={StudentsTableHeaders} />
         </LBox>

@@ -1,6 +1,5 @@
 import React from "react";
 import { getBookByTitle, getBookList } from "../../api/books/GET";
-// import { LButton } from "../../components/buttons/LButton";
 import LTable from "../../components/tables/LTable";
 import { TableHeaders } from "../../types/componentsTypes/tableTypes";
 import { LBox } from "../../components/layoutComponents/LBox";
@@ -22,7 +21,7 @@ const BookPage = () => {
     const [toSearchString, setToSearchString] = React.useState<string>("");
 
     React.useEffect(() => {
-        getBookList().then((response) => { setBookList(response.slice(0, 50)); setBookList(response.slice(0, 50)) });
+        getBookList().then((response) => { setBookList(response); setBookList(response) });
     }, []);
 
     const HandleRowClick = (book: BookType) => {
@@ -35,8 +34,7 @@ const BookPage = () => {
     }
 
     const handleSearch = () => {
-        console.log("a")
-        getBookByTitle(toSearchString).then((r) => setBookList(r.slice(0, 50)));
+        getBookByTitle(toSearchString).then((r) => setBookList(r));
     }
 
     return (

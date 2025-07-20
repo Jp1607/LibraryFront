@@ -1,10 +1,12 @@
 import { SxProps, Theme } from "@mui/material";
+import { ButtonStyleType } from "./buttons.types";
 
-export const ButtonComponentStyle: SxProps<Theme> = {
+export const ButtonStyle: ButtonStyleType = {
     backgroundColor: "#2eb82e",
-    marginLeft: "2%"
+    marginLeft: "2%",
+
 };
 
-export const LinkButtonComponentStyle: SxProps<Theme> = {
+export const LinkButtonComponentStyle = {
     backgroundColor: "#2eb82e"
 };
