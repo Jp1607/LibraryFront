@@ -1,10 +1,10 @@
 import { styled } from "@mui/material"
 import { GenericButton } from "./GenericButton"
 
-type LButtonProps = {
+type LButtonProps = LButtonStyleType & {
   label: string,
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-} & LButtonStyleType
+}
 
 type LButtonStyleType = {};
 

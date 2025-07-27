@@ -5,15 +5,19 @@ type GenericButtonStyleType = {
     color?: string;
     border?: string;
     padding?: string;
-    font?: string
+    font?: string;
+    width?: string;
+    height?: string;
 }
 
 const DefaultGenericButtonStyle: Required<GenericButtonStyleType> = {
-    backgroundColor: '#EEE',
+    backgroundColor: '#E9E9E9',
     color: '#31b934',
     border: '1px solid #31b934',
     padding: '',
-    font: '500 150% "Times new Roman"'
+    font: '500 150% "Times new Roman"',
+    width: '100%',
+    height: '100%',
 }
 
 const StyledGenericButton = styled('button')<GenericButtonStyleType>((props) => ({
@@ -21,7 +25,9 @@ const StyledGenericButton = styled('button')<GenericButtonStyleType>((props) => 
     color: props.color ?? DefaultGenericButtonStyle.color,
     border: props.border ?? DefaultGenericButtonStyle.border,
     font: props.font ?? DefaultGenericButtonStyle.font,
-    padding: props.padding ?? DefaultGenericButtonStyle.padding
+    padding: props.padding ?? DefaultGenericButtonStyle.padding,
+    width: props.width ?? DefaultGenericButtonStyle.width,
+    height: props.width ?? DefaultGenericButtonStyle.width,
 }))
 
 type GenericButtonType = {

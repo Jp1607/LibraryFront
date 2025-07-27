@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom"
-import { LLinkButtonProps } from "./buttons.types"
-import { LinkButtonComponentStyle } from "./buttons.style"
+
 import { GenericButton } from "./GenericButton"
+
+export type LLinkButtonProps = {
+    path: string,
+    label: string
+};
 
 export const LLinkButton: React.FC<LLinkButtonProps> = ({ path, label, ...rest }: LLinkButtonProps) => {
 
     return (
-        <GenericButton  {...rest} >{label}</GenericButton>
+        <a href={path} style={{ width: '100%', height: '100%' }}>
+            <GenericButton  {...rest} >{label}</GenericButton>
+        </a>
     )
 }
