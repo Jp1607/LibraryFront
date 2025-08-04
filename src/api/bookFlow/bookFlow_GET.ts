@@ -1,10 +1,11 @@
+import { ApiData } from "../../types/entities/api";
 import { GET } from "../requests";
 import { BookFlowTableDisplayType, BookFlowType } from "./bookFlow.types";
 
-export async function getBorrowedBookList(): Promise<BookFlowTableDisplayType[]> {
-    return await GET("flow")
+export async function getBorrowedBookList(page?: number): Promise<ApiData<BookFlowTableDisplayType>> {
+    return await GET<BookFlowTableDisplayType>("flow", [`page=${page}`]);
 }
 
 export async function getBorrowedBookById(id: number): Promise<BookFlowType> {
-    return await GET("flow", [`id=${id}`])
+    return (await GET<BookFlowType>("flow", [`id=${id}`])).rows[0];
 }

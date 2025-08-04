@@ -1,16 +1,19 @@
 import React from 'react';
 import { CustomTable, CustomTableBody, CustomTableCell, CustomTableContainer, CustomTableHead, CustomTableRow } from './TableComponents';
 import { TableComponentProps } from '../../types/componentsTypes/tableTypes';
+import { TablePagination } from '@mui/material';
 
-const LTable = <T,>({ rows, columns, onRowClick }: TableComponentProps<T>) => {
+const LTable = <T,>({ rows, columns, onRowClick, handlePageChange }: TableComponentProps<T>) => {
     const [selectedRowId, setSelectedRowId] = React.useState<number>();
+    const [rowsPerPage] = React.useState<number>(10);
+
     const handleClick = (row: T, rowIndex: number) => {
         setSelectedRowId(rowIndex)
         onRowClick(row);
     }
 
     return (
-        <CustomTableContainer sx={{ height: "90vh" }}>
+        <CustomTableContainer sx={{ height: "70vh" }}>
             <CustomTable>
                 <CustomTableHead >
                     <CustomTableRow sx={{ ':hover': { backgroundColor: 'white' } }}>
@@ -20,7 +23,7 @@ const LTable = <T,>({ rows, columns, onRowClick }: TableComponentProps<T>) => {
                     </CustomTableRow>
                 </CustomTableHead>
                 <CustomTableBody>
-                    {rows.map((row, rowIndex) => {
+                    {rows.rows.map((row, rowIndex) => {
                         const selected = selectedRowId == rowIndex;
                         return (
                             <CustomTableRow
@@ -44,6 +47,15 @@ const LTable = <T,>({ rows, columns, onRowClick }: TableComponentProps<T>) => {
                     })}
                 </CustomTableBody>
             </CustomTable>
+            <TablePagination
+                component={"div"}
+                count={rows.pagination.totalDataCount}
+                onPageChange={handlePageChange}
+                rowsPerPage={rows.rows.length}
+                page={rows.pagination.page}
+                rowsPerPageOptions={[rowsPerPage]}
+                labelDisplayedRows={({ from, to, count }) => { return `${from}–${to} de ${count !== -1 ? count : `more than ${to}`}`; }}
+            />
         </CustomTableContainer>
     )
 }

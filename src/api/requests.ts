@@ -1,10 +1,10 @@
-import { apiDataType } from "../types/entities/api";
+import { ApiData, apiDataType } from "../types/entities/api";
 
 
 const myHeaders: Headers = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
-export async function GET<T>(tableName: string, param?: string[]): Promise<T> {
+export async function GET<T>(tableName: string, param?: string[]): Promise<ApiData<T>> {
   const query = param ? `?${param.map((p) => `${p}`).join("&")}` : "";
   const response = await fetch(`http://localhost:8080/${tableName}${query}`, {
     headers: myHeaders,

@@ -1,5 +1,0 @@
-Ill add a utility that do this logic: (props) => ({
-    backgroundColor: props.backgroundColor ?? DefaultDefaultButtonStyle.backgroundColor,
-    color: props.color ?? DefaultDefaultButtonStyle.color,
-    ... 
-})
