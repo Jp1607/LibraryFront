@@ -6,9 +6,9 @@ import { LBox } from './components/layoutComponents/LBox';
 const App = () => {
   return (
     <BrowserRouter>
-      <LBox display={"flex"} height={"100vh"} width={"100vw"}>
+      <LBox display={"flex"} height={"100vh"}>
         <LSideBar />
-        <LBox flexGrow={1} padding={3}>
+        <LBox flex={1}>
           <Router />
         </LBox>
       </LBox>

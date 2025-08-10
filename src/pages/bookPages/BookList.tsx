@@ -48,8 +48,12 @@ const BookPage = () => {
     }
 
     return (
-        <LBox >
-            <LBox display={'flex'} width={'100%'} height={'6vh'} marginBottom={'1%'} sx={{ '& > *': { marginRight: '2%' }, '& > .MuiButtonBase-root': { width: '8%' } }}>
+        <LBox display={'flex'} flexDirection={'column'} height={"100%"}>
+            <LBox
+                display={'flex'}
+                height={'100px'}
+                padding={2}
+                sx={{ '& > *': { marginRight: '2%', width: '100px', height: '50px' } }}>
                 <LLinkButton label="Novo" path="/books/new" />
                 <LLinkButton label="Editar" path={`/books/new/${selectedBook.id}`} />
                 {/* <LButton label="Excluir" onClick={() => HandleDelete} /> */}
@@ -57,7 +61,9 @@ const BookPage = () => {
                 <LTextField value={toSearchString} label="Buscar" onChange={handleToSearchStringChange} />
                 <LButton label="Pesquisar" onClick={handleSearch} />
             </LBox>
-            <LTable<BookType> rows={bookData} handlePageChange={HandlePageChange} onRowClick={HandleRowClick} columns={BookTableHeaders} />
+            <LBox flex={1}>
+                <LTable<BookType> rows={bookData} handlePageChange={HandlePageChange} onRowClick={HandleRowClick} columns={BookTableHeaders} />
+            </LBox>
         </LBox>
     )
 }

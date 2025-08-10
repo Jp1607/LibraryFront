@@ -7,13 +7,15 @@ const LTable = <T,>({ rows, columns, onRowClick, handlePageChange }: TableCompon
     const [selectedRowId, setSelectedRowId] = React.useState<number>();
     const [rowsPerPage] = React.useState<number>(10);
 
+    console.log(rows.rows, columns)
+
     const handleClick = (row: T, rowIndex: number) => {
         setSelectedRowId(rowIndex)
         onRowClick(row);
     }
 
     return (
-        <CustomTableContainer sx={{ height: "70vh" }}>
+        <CustomTableContainer sx={{ height: "100%", width: "100%" }}>
             <CustomTable>
                 <CustomTableHead >
                     <CustomTableRow sx={{ ':hover': { backgroundColor: 'white' } }}>

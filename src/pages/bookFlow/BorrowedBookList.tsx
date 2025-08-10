@@ -56,16 +56,11 @@ export const BorrowedBookList = () => {
         { key: "date", label: "Data de empréstimo" }
     ]
 
-    const getList = (page?: number) => {
-        getBorrowedBookList(page).then((response) => setBookFlowTableDisplayList(response))
-    }
-
     useEffect(() => {
-        getList()
-    }, [])
-
-    useEffect(() => {
-        getList(page)
+        getBorrowedBookList(page).then((response) => {
+            const data: BookFlowTableDisplayType[] = response.rows.map((row: BookFlowType) => ({ id: row.id, book: row.book.title, student: row.student.name, date: row.borrowDate }));
+            setBookFlowTableDisplayList({ pagination: { page: response.pagination.page, totalDataCount: response.pagination.totalDataCount }, rows: data })
+        })
     }, [page])
 
     const HandleRowClick = (book: BookFlowTableDisplayType) => {
