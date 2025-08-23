@@ -1,47 +1,47 @@
-import { styled } from "@mui/material"
+import React, { JSX } from "react";
+import { ButtonPropsVariantOverrides, Button as MuiButton } from "@mui/material"
+import CheckIcon from '@mui/icons-material/Check';
 
-type GenericButtonStyleType = {
-    backgroundColor?: string;
-    color?: string;
-    border?: string;
-    padding?: string;
-    font?: string;
-    width?: string;
-    height?: string;
+
+type SizeType = "xs" | "s" | "m" | "l" | "xl";
+
+type ButtonVariants = "primary" | "secondary"
+
+type IconType = "save"
+type ButtonType = {
+    variant: ButtonVariants;
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const DefaultGenericButtonStyle: Required<GenericButtonStyleType> = {
-    backgroundColor: '#E9E9E9',
-    color: '#31b934',
-    border: '1px solid #31b934',
-    padding: '',
-    font: '500 150% "Times new Roman"',
-    width: '100%',
-    height: '100%',
+const Button: React.FC<ButtonType> = ({ variant, onClick }) => {
+    return (<PlainButton variant="primary" icon="save" iconSize="m" size="m" onClick={onClick}>Main</PlainButton>)
 }
 
-const StyledGenericButton = styled('button')<GenericButtonStyleType>((props) => ({
-    backgroundColor: props.backgroundColor ?? DefaultGenericButtonStyle.backgroundColor,
-    color: props.color ?? DefaultGenericButtonStyle.color,
-    border: props.border ?? DefaultGenericButtonStyle.border,
-    font: props.font ?? DefaultGenericButtonStyle.font,
-    padding: props.padding ?? DefaultGenericButtonStyle.padding,
-    width: props.width ?? DefaultGenericButtonStyle.width,
-    height: props.width ?? DefaultGenericButtonStyle.width,
-}))
+type PlainButtonType = {
+    variant: ButtonVariants;
+    size: SizeType;
+    icon: IconType;
+    iconSize: SizeType;
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
 
-type GenericButtonType = {
-    children?: React.ReactNode,
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-} & GenericButtonStyleType
+function parseVariant(variant: ButtonVariants) {
+    if (variant == "primary") {
+        return "contained"
+    } else {
+        return "text"
+    }
+}
 
-export const GenericButton: React.FC<GenericButtonType> = ({ children, onClick, ...styles }) => {
+function getIcon(icon: IconType): JSX.Element {
+
+    return <CheckIcon />
+
+}
+
+const PlainButton: React.FC<React.PropsWithChildren<PlainButtonType>> = ({ variant, children, icon, onClick }) => {
+
     return (
-        <StyledGenericButton
-            onClick={onClick}
-            {...styles}
-        >
-            {children}
-        </StyledGenericButton>
+        <MuiButton variant={parseVariant(variant)} startIcon={getIcon(icon)} onClick={onClick}>{children}</MuiButton>
     )
 }
