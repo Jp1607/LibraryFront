@@ -12,7 +12,11 @@ const Router = () => {
     const Index: React.FC = () => {
 
         return (
-            <Button kind='save' onClick={() => { }} />
+            <>
+                <Button kind='save' onClick={() => { }} />
+                <Button kind='add' onClick={() => { }} />
+                <Button kind='return' onClick={() => { }} />
+            </>
         )
 
     }
