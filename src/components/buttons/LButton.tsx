@@ -1,5 +1,5 @@
 import { styled } from "@mui/material"
-import { GenericButton } from "./GenericButton"
+import { PlainButton } from "./Button"
 
 type LButtonProps = LButtonStyleType & {
   label: string,
@@ -10,10 +10,13 @@ type LButtonStyleType = {};
 
 const DefaultLButtonStyle: Required<LButtonStyleType> = {};
 
-const StyledLButton = styled(GenericButton) <LButtonStyleType>``;
+const StyledLButton = styled(PlainButton) <LButtonStyleType>``;
 
 export const LButton: React.FC<LButtonProps> = ({ label, onClick, ...styles }: LButtonProps) => {
-  return <StyledLButton onClick={onClick} {...styles}>{label}</StyledLButton>
+
+  const props = { onClick: onClick }
+
+  return (<></>)
 }
 
 export default StyledLButton;

@@ -5,10 +5,21 @@ import { StudentRegister } from '../pages/student/StudentRegister';
 import { CreateBook } from '../pages/bookPages/BookCreate';
 import { BookBorrow } from '../pages/bookPages/BookBorrow';
 import { BorrowedBookList } from '../pages/bookFlow/BorrowedBookList';
+import Button from '../components/buttons/Button';
 
 const Router = () => {
+
+    const Index: React.FC = () => {
+
+        return (
+            <Button kind='save' onClick={() => { }} />
+        )
+
+    }
+
     return (
         <Routes>
+            <Route path="/index" element={<Index />} />
             <Route path="/" element={<BookPage />} />
             <Route path="/books" element={<BookPage />} />
             <Route path="/books/new" element={<CreateBook />} />

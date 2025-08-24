@@ -1,5 +1,5 @@
 
-import { GenericButton } from "./GenericButton"
+import { PlainButton } from "./Button"
 
 export type LLinkButtonProps = {
     path: string,
@@ -10,7 +10,7 @@ export const LLinkButton: React.FC<LLinkButtonProps> = ({ path, label, ...rest }
 
     return (
         <a href={path} style={{ width: '100%', height: '100%' }}>
-            <GenericButton  {...rest} >{label}</GenericButton>
+            {/* <PlainButton  {...rest} >{label}</PlainButton> */}
         </a>
     )
 }
